@@ -36,6 +36,9 @@ import { InlayHintsFeature } from "vscode-languageclient/lib/common/inlayHint";
 import { DiagnosticFeature } from "vscode-languageclient/lib/common/diagnostic";
 import { ProgressFeature } from "vscode-languageclient/lib/common/progress";
 
+export interface IConnectionProvider {
+    get(encoding: string): Promise<MessageTransports>;
+}
 export class MonacoLanguageClient extends BaseLanguageClient {
 
     static bypassConversion = (result: any, token?: vscode.CancellationToken) => token != null ? Promise.resolve(result || undefined) : (result || undefined);
