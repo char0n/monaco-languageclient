@@ -13,12 +13,13 @@ export interface MonacoServices extends Services {
 }
 export namespace MonacoServices {
     export interface Options {
-        rootUri?: string
+        workspaceFolders?: vscode.WorkspaceFolder[]
+        rootPath?: string
     }
     export type Provider = () => MonacoServices;
     export function create(options: Options = {}): MonacoServices {
         return {
-            workspace: new MonacoWorkspace(options.rootUri),
+            workspace: new MonacoWorkspace(options.workspaceFolders, options.rootPath),
             window: new ConsoleWindow()
         }
     }
